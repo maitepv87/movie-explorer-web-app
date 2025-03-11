@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { movieApi } from '../../../api/movieApi';
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 import { Grid } from '@mui/material';
 import MovieInfoCard from '../components/MovieInfoCard';
+import { getMovie } from '../../../store/slices/movie'
 
 const MovieList = () => {
     const navigate = useNavigate();
@@ -12,15 +14,16 @@ const MovieList = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const dispatch = useDispatch();
+
     const apiKey = 'e8752c25ec72a395c2e9f279e9b4e18f';
 
     // Get movies from the API
     const fetchMovies = async () => {
         setLoading(true);
         try {
-            const url = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
-            const response = await axios.get(url);
-            // console.log("API Response:", response.data.results);
+            const url = `/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
+            const response = await movieApi.get(url);
             setMovies(response.data.results);
         } catch (error) {
             console.error('Error fetching movies:', error);
@@ -37,17 +40,20 @@ const MovieList = () => {
     // Get details of a movie from the API
     const fetchMovieDetails = async (movieId) => {
         setLoading(true);
-        try {
-            const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`;
-            const response = await axios.get(url);
-            console.log("API:", response.data);
-            setMovie(response.data);
-        } catch (error) {
-            console.error('Error fetching movie details:', error);
-            setError(error);
-        } finally {
-            setLoading(false);
-        }
+
+        dispatch(getMovie(movieId))
+
+        // try {
+        //     const url = `/movie/${movieId}?api_key=${apiKey}&language=en-US`;
+        //     const response = await movieApi.get(url);
+        //     console.log("API:", response.data);
+        //     setMovie(response.data);
+        // } catch (error) {
+        //     console.error('Error fetching movie details:', error);
+        //     setError(error);
+        // } finally {
+        //     setLoading(false);
+        // }
     };
 
     const onMovieClick = (movieId) => {

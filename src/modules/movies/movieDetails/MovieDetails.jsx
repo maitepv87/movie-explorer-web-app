@@ -1,8 +1,11 @@
 import React from 'react';
+// import { useSelector } from 'react-redux'
 import { Grid, Typography, Button, Box, Paper } from '@mui/material';
 // import MoviePosterCard from '../components/MoviePosterCard';
 
 const MovieDetails = () => {
+    // const { movie } = useSelector((state) => state.movie)
+
     return (
         <Box sx={{ padding: 2 }}>
             {/* Cuadrícula principal con dos filas */}
