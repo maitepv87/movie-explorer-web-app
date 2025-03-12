@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 
 const MovieInfoCard = ({ movie, onClick }) => {
     const { release_date, poster_path, title, id } = movie;
+
     const date = new Date(release_date);
     const FormattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 

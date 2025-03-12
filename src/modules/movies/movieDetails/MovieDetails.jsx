@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
-import { Grid, Typography, Button, Box, Paper, Fab } from '@mui/material';
+import { Grid, Typography, Box, Paper, Fab } from '@mui/material';
 import { List, Favorite, Bookmark } from '@mui/icons-material';
 import MoviePosterCard from '../components/MoviePosterCard';
 
@@ -37,11 +37,6 @@ const MovieDetails = () => {
                     <Grid item xs={12} sm={4}>
                         <Paper sx={{ padding: 2 }}>
                             {/* Aquí va el poster de la película */}
-                            {/* <img
-                                src={poster_path}// Puedes usar la URL del poster
-                                alt="Poster de película"
-                                style={{ width: '100%', height: 'auto' }}
-                            /> */}
                             <MoviePosterCard posterPath={poster_path} />
                         </Paper>
                     </Grid>
@@ -64,7 +59,7 @@ const MovieDetails = () => {
 
 
                             {/* Botones */}
-                            <Box sx={{ marginBottom: 3 }}>
+                            <Box sx={{ marginBottom: 3, marginTop: 2, display: 'flex', gap: 2 }}>
                                 {/* Primer botón: "Add to Watchlist" */}
                                 <Fab size="medium" aria-label="like">
                                     <List />
