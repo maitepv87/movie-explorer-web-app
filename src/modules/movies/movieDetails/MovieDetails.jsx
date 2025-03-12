@@ -1,10 +1,31 @@
 import React from 'react';
-// import { useSelector } from 'react-redux'
-import { Grid, Typography, Button, Box, Paper } from '@mui/material';
-// import MoviePosterCard from '../components/MoviePosterCard';
+import { useSelector } from 'react-redux'
+import { Grid, Typography, Button, Box, Paper, Fab } from '@mui/material';
+import { List, Favorite, Bookmark } from '@mui/icons-material';
+import MoviePosterCard from '../components/MoviePosterCard';
 
 const MovieDetails = () => {
-    // const { movie } = useSelector((state) => state.movie)
+    const { movie } = useSelector((state) => state.movie)
+
+    const {
+        title,
+        release_date,
+        overview,
+        poster_path,
+        genres,
+        runtime,
+        origin_country,
+    } = movie;
+
+    const date = new Date(release_date);
+    const FormattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    const movieGenres = genres?.length > 0 ? genres.map((genre) => genre.name).join(", ") : "Genderless"
+    const movieRuntime = `${Math.floor(runtime / 60)}h ${runtime % 60}m`; const movieOriginCountry = origin_country?.length > 0
+        ? `(${origin_country.map((originCountry) => originCountry).join(", ")})`
+        : "(unknown)";
+
+
+    console.log("Component:", movie);
 
     return (
         <Box sx={{ padding: 2 }}>
@@ -16,11 +37,12 @@ const MovieDetails = () => {
                     <Grid item xs={12} sm={4}>
                         <Paper sx={{ padding: 2 }}>
                             {/* Aquí va el poster de la película */}
-                            <img
-                                src="https://via.placeholder.com/300x450" // Puedes usar la URL del poster
+                            {/* <img
+                                src={poster_path}// Puedes usar la URL del poster
                                 alt="Poster de película"
                                 style={{ width: '100%', height: 'auto' }}
-                            />
+                            /> */}
+                            <MoviePosterCard posterPath={poster_path} />
                         </Paper>
                     </Grid>
 
@@ -29,34 +51,46 @@ const MovieDetails = () => {
                         <Paper sx={{ padding: 2 }}>
                             {/* Título de la película */}
                             <Typography variant="h3" component="h1" gutterBottom>
-                                Título de la Película
+                                {title}
+                                <Typography variant="h3" component="span" color="textSecondary" sx={{ marginLeft: 1 }}>
+                                    ({new Date(release_date).getFullYear()})
+                                </Typography>
                             </Typography>
 
                             {/* Fecha de lanzamiento */}
-                            <Typography variant="body1" color="textSecondary" paragraph>
-                                Fecha de lanzamiento: <strong>01 Enero 2025</strong>
+                            <Typography variant="body1" color="textSecondary">
+                                {FormattedDate} {movieOriginCountry} ・ {movieGenres} ・ {movieRuntime}
                             </Typography>
 
+
                             {/* Botones */}
-                            <Box sx={{ marginBottom: 2 }}>
-                                <Button variant="contained" color="primary" sx={{ marginRight: 1 }}>
-                                    Ver Trailer
-                                </Button>
-                                <Button variant="outlined" color="secondary">
-                                    Agregar a Favoritos
-                                </Button>
+                            <Box sx={{ marginBottom: 3 }}>
+                                {/* Primer botón: "Add to Watchlist" */}
+                                <Fab size="medium" aria-label="like">
+                                    <List />
+                                </Fab>
+
+                                {/* Segundo botón: "Heart" (Favoritos) */}
+                                <Fab size="medium" aria-label="like">
+                                    <Favorite />
+                                </Fab>
+
+                                {/* Tercer botón: "Add to Your Watchlist" */}
+                                <Fab size="medium" aria-label="like">
+                                    <Bookmark />
+                                </Fab>
                             </Box>
+
+                            {/* Encabezado "Overview" */}
+                            <Typography variant="h6" component="h2" sx={{ fontWeight: 'bold', marginBottom: 1 }}>
+                                Overview
+                            </Typography>
 
                             {/* Descripción de la película */}
                             <Typography variant="body2" >
-                                Aquí va la descripción de la película. Puedes agregar un párrafo de texto
-                                describiendo la trama o cualquier otro detalle relevante.
+                                {overview}
                             </Typography>
 
-                            {/* Director de la película */}
-                            <Typography variant="body1">
-                                <strong>Director:</strong> Nombre del director
-                            </Typography>
                         </Paper>
                     </Grid>
                 </Grid>
@@ -66,7 +100,7 @@ const MovieDetails = () => {
                     {/* Aquí puedes agregar más secciones o detalles */}
                     <Paper sx={{ padding: 2 }}>
                         <Typography variant="h5" component="h2" gutterBottom>
-                            Otras Secciones
+                            Top Billed Cast
                         </Typography>
                         {/* Agrega más información aquí si la necesitas */}
                     </Paper>
