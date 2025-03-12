@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
-import { Grid, Typography, Box, Paper, Fab } from '@mui/material';
+import { Grid, Typography, Box, Paper, Fab, Tooltip } from '@mui/material';
 import { List, Favorite, Bookmark } from '@mui/icons-material';
 import MoviePosterCard from '../components/MoviePosterCard';
+import ActionButton from '../../../components/ActionButton';
 
 const MovieDetails = () => {
     const { movie } = useSelector((state) => state.movie)
@@ -61,19 +62,26 @@ const MovieDetails = () => {
                             {/* Botones */}
                             <Box sx={{ marginBottom: 3, marginTop: 2, display: 'flex', gap: 2 }}>
                                 {/* Primer botón: "Add to Watchlist" */}
-                                <Fab size="medium" aria-label="like">
-                                    <List />
-                                </Fab>
+                                <ActionButton
+                                    title="Add to list"
+                                    icon={<List />}
+                                    onClick={() => alert("List")}
+                                />
 
                                 {/* Segundo botón: "Heart" (Favoritos) */}
-                                <Fab size="medium" aria-label="like">
-                                    <Favorite />
-                                </Fab>
+                                <ActionButton
+                                    title="Mark as favorite"
+                                    icon={<Favorite />}
+                                    onClick={() => alert("Favorite")}
+                                />
 
                                 {/* Tercer botón: "Add to Your Watchlist" */}
-                                <Fab size="medium" aria-label="like">
-                                    <Bookmark />
-                                </Fab>
+                                <ActionButton
+                                    title="Add to your watchlist"
+                                    icon={<Bookmark />}
+                                    onClick={() => alert("Add to your watchlist")}
+                                />
+
                             </Box>
 
                             {/* Encabezado "Overview" */}

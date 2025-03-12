@@ -3,12 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
-import MovieRoutes from '../modules/movies/movieRoutes/MovieRoutes';
-import TVShowsRoutes from '../modules/tvShows/tvShowsRoutes/TVShowsRoutes';
-import MovieList from '../modules/movies/movieList/MovieList';
-import MovieDetails from '../modules/movies/movieDetails/MovieDetails';
-import TVShowsList from '../modules/tvShows/tvShowsList/TVShowsList';
-import TVShowsDetails from '../modules/tvShows/tvShowsDetails/TVShowsDetails';
+// import MovieRoutes from './modules/movies/movieRoutes/MovieRoutes';
+// import TVShowsRoutes from './modules/tvShows/tvShowsRoutes/TVShowsRoutes';
+import MovieList from './modules/movies/movieList/MovieList';
+import MovieDetails from './modules/movies/movieDetails/MovieDetails';
+import TVShowsList from './modules/tvShows/tvShowsList/TVShowsList';
+import TVShowsDetails from './modules/tvShows/tvShowsDetails/TVShowsDetails';
 
 const AppContent = () => {
     return (
