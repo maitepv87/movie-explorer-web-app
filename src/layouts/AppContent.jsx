@@ -4,8 +4,6 @@ import { Box, Container, Stack } from '@mui/material';
 import { MovieListPage, MovieDetailPage } from '../modules/movies/pages';
 import { PeopleListPage, PersonDetailsPage } from '../modules/people/pages';
 
-import TVShowsList from '../modules/tvShows/tvShowsList/TVShowsList';
-import TVShowsDetails from '../modules/tvShows/tvShowsDetails/TVShowsDetails';
 
 export const AppContent = () => {
     return (
@@ -43,9 +41,6 @@ export const AppContent = () => {
                         <Route path="/people" element={<PeopleListPage />} />
                         <Route path="/people/:id" element={<PersonDetailsPage />} />
 
-
-                        <Route path="/tv-shows" element={<TVShowsList />} />
-                        <Route path="/tv-shows/:id" element={<TVShowsDetails />} />
                     </Routes>
                 </Stack>
             </Container>

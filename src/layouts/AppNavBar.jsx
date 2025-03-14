@@ -40,11 +40,6 @@ export const AppNavBar = () => {
                                     Movies
                                 </Button>
                             </NavLink>
-                            <NavLink to="/tv-shows" style={{}}>
-                                <Button variant="text" color="info" size="small">
-                                    TV Shows
-                                </Button>
-                            </NavLink>
                             <NavLink to="/people" style={{}} >
                                 <Button variant="text" color="info" size="small">
                                     People
