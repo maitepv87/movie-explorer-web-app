@@ -5,6 +5,7 @@ import { Box, Container, Stack } from '@mui/material';
 // import TVShowsRoutes from './modules/tvShows/tvShowsRoutes/TVShowsRoutes';
 // import MovieList from '../modules/movies/movieList/MovieList';
 import { MovieListPage, MovieDetailPage } from '../modules/movies/pages';
+import { PeopleListPage } from '../modules/people/pages';
 
 import TVShowsList from '../modules/tvShows/tvShowsList/TVShowsList';
 import TVShowsDetails from '../modules/tvShows/tvShowsDetails/TVShowsDetails';
@@ -43,6 +44,9 @@ export const AppContent = () => {
                         <Route path="/tv-shows/*" element={<TVShowsRoutes />} /> */}
                         <Route path="/movies" element={<MovieListPage />} />
                         <Route path="/movies/:id" element={<MovieDetailPage />} />
+
+                        <Route path="/peoples" element={<PeopleListPage />} />
+
 
                         <Route path="/tv-shows" element={<TVShowsList />} />
                         <Route path="/tv-shows/:id" element={<TVShowsDetails />} />
