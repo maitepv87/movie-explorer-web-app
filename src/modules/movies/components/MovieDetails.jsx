@@ -1,32 +1,27 @@
 import React from 'react';
-import { useSelector } from 'react-redux'
-import { Grid, Typography, Box, Paper, Fab, Tooltip } from '@mui/material';
+import PropTypes from 'prop-types';
+import { Grid, Typography, Box, Paper, Card, CardMedia } from '@mui/material';
 import { List, Favorite, Bookmark } from '@mui/icons-material';
-import MoviePosterCard from '../components/MoviePosterCard';
-import ActionButton from '../../../components/ActionButton';
+import { ActionButton } from '../../../components/ActionButton';
+import { formatDate, getImageUrl } from '../../../utils';
 
-const MovieDetails = () => {
-    const { movie } = useSelector((state) => state.movie)
+export const MovieDetails = ({ movie }) => {
 
     const {
         title,
-        release_date,
         overview,
         poster_path,
         genres,
         runtime,
         origin_country,
+        release_date
     } = movie;
 
-    const date = new Date(release_date);
-    const FormattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     const movieGenres = genres?.length > 0 ? genres.map((genre) => genre.name).join(", ") : "Genderless"
-    const movieRuntime = `${Math.floor(runtime / 60)}h ${runtime % 60}m`; const movieOriginCountry = origin_country?.length > 0
+    const movieRuntime = `${Math.floor(runtime / 60)}h ${runtime % 60}m`;
+    const movieOriginCountry = origin_country?.length > 0
         ? `(${origin_country.map((originCountry) => originCountry).join(", ")})`
         : "(unknown)";
-
-
-    console.log("Component:", movie);
 
     return (
         <Box sx={{ padding: 2 }}>
@@ -38,7 +33,13 @@ const MovieDetails = () => {
                     <Grid item xs={12} sm={4}>
                         <Paper sx={{ padding: 2 }}>
                             {/* Aquí va el poster de la película */}
-                            <MoviePosterCard posterPath={poster_path} />
+                            <Card sx={{ width: "100%", height: "100%" }}>
+                                <CardMedia
+                                    component="img"
+                                    image={getImageUrl(poster_path)}
+                                    alt="Movie poster"
+                                />
+                            </Card>
                         </Paper>
                     </Grid>
 
@@ -55,7 +56,7 @@ const MovieDetails = () => {
 
                             {/* Fecha de lanzamiento */}
                             <Typography variant="body1" color="textSecondary">
-                                {FormattedDate} {movieOriginCountry} ・ {movieGenres} ・ {movieRuntime}
+                                {formatDate(release_date)} {movieOriginCountry} ・ {movieGenres} ・ {movieRuntime}
                             </Typography>
 
 
@@ -113,4 +114,10 @@ const MovieDetails = () => {
     );
 };
 
-export default MovieDetails;
+MovieDetails.propTypes = {
+    movie: PropTypes.object,
+
+};
+
+
+

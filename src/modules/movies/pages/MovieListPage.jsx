@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { Grid, Typography, CircularProgress } from '@mui/material';
-import MovieInfoCard from '../components/MovieInfoCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { Typography, CircularProgress } from '@mui/material';
 import { getMovies, getMovie } from '../../../store/slices/movie'
+import { MovieList } from '../components';
 
-const MovieList = () => {
+export const MovieListPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -25,14 +25,6 @@ const MovieList = () => {
     if (error) return <Typography color="error">{error}</Typography>;
 
     return (
-        <Grid container spacing={2} >
-            {movies.map((movie) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} xl={2.4} key={movie.id}>
-                    <MovieInfoCard movie={movie} onClick={onMovieClick} />
-                </Grid>
-            ))}
-        </Grid>
+        <MovieList movies={movies} onClick={onMovieClick} />
     );
 };
-
-export default MovieList;

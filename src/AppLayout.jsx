@@ -1,8 +1,7 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppTheme from './theme/AppTheme';
-import AppNavBar from './components/AppNavBar';
-import AppContent from './components/AppContent';
+import { AppNavBar, AppContent } from './layouts'
 
 const AppLayout = (props) => {
   return (

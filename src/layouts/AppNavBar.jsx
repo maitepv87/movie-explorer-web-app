@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import ProfileSettingsMenu from './ProfileSettingsMenu';
 import { NavLink } from "react-router-dom";
+import { styled, alpha } from '@mui/material/styles';
+import { Box, AppBar, Toolbar, Button, Container } from '@mui/material';
+import { ProfileSettingsMenu } from './ProfileSettingsMenu';
+
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
     display: 'flex',
@@ -22,7 +19,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
     padding: '8px 12px',
 }));
 
-const AppNavBar = () => {
+export const AppNavBar = () => {
     return (
         <AppBar
             position="fixed"
@@ -60,4 +57,3 @@ const AppNavBar = () => {
     );
 }
 
-export default AppNavBar;

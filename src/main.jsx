@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom";
 import { StyledEngineProvider } from '@mui/material/styles';
-import AppLayout from "./AppLayout";
 import { store } from './store'
 import { Provider } from 'react-redux'
+import AppLayout from "./AppLayout";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 

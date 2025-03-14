@@ -1,17 +1,9 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import Divider from '@mui/material/Divider';
-import MenuItem from '@mui/material/MenuItem';
+import { Box, IconButton, Divider, MenuItem, Tooltip, Avatar, ListItemIcon, Menu } from '@mui/material';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import Tooltip from '@mui/material/Tooltip';
-import Avatar from '@mui/material/Avatar';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Menu from '@mui/material/Menu';
 
-
-const ProfileSettingsMenu = () => {
+export const ProfileSettingsMenu = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -103,4 +95,4 @@ const ProfileSettingsMenu = () => {
     );
 }
 
-export default ProfileSettingsMenu;
+
