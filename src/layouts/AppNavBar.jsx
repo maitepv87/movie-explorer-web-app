@@ -45,7 +45,7 @@ export const AppNavBar = () => {
                                     TV Shows
                                 </Button>
                             </NavLink>
-                            <NavLink to="/peoples" style={{}} >
+                            <NavLink to="/people" style={{}} >
                                 <Button variant="text" color="info" size="small">
                                     People
                                 </Button>

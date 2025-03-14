@@ -15,17 +15,16 @@ export const PeopleListPage = () => {
         dispatch(getPeople());
     }, []);
 
-    // const onMovieClick = (movieId) => {
-    //     dispatch(getMovie(movieId))
-    //         .then(() => navigate(`/movies/${movieId}`))
-    //         .catch(err => console.error('Error fetching movie:', err));
-    // };
+    const onPersonClick = (personId) => {
+        dispatch(getPerson(personId))
+            .then(() => navigate(`/people/${personId}`))
+            .catch(err => console.error('Error fetching person:', err));
+    };
 
-    // if (loading) return <CircularProgress />;
-    // if (error) return <Typography color="error">{error}</Typography>;
+    if (loading) return <CircularProgress />;
+    if (error) return <Typography color="error">{error}</Typography>;
 
     return (
-        // <PeopleList movies={movies} onClick={onMovieClick} />
-        <PeopleList />
+        <PeopleList people={people} onClick={onPersonClick} />
     );
 };
