@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Box, Container, Stack } from '@mui/material';
+import { HomePage } from '../modules/home/pages';
 import { MovieListPage, MovieDetailPage } from '../modules/movies/pages';
 import { PeopleListPage, PersonDetailsPage } from '../modules/people/pages';
 
@@ -35,6 +36,8 @@ export const AppContent = () => {
                     sx={{ alignItems: 'center', width: '100%' }}
                 >
                     <Routes>
+                        <Route path="/" element={<HomePage />} />
+
                         <Route path="/movies" element={<MovieListPage />} />
                         <Route path="/movies/:id" element={<MovieDetailPage />} />
 

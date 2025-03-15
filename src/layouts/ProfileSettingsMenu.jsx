@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Box, IconButton, Divider, MenuItem, Tooltip, Avatar, ListItemIcon, Menu } from '@mui/material';
+import PersonIcon from '@mui/icons-material/Person';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 
@@ -26,13 +27,11 @@ export const ProfileSettingsMenu = () => {
                 <Tooltip title="Profile settings">
                     <IconButton
                         onClick={handleClick}
-                        size="small"
-                        sx={{ ml: 2, p: 0 }}
                         aria-controls={open ? 'account-menu' : undefined}
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                        <PersonIcon />
                     </IconButton>
                 </Tooltip>
                 <Menu
@@ -73,7 +72,7 @@ export const ProfileSettingsMenu = () => {
                     anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
                     <MenuItem onClick={handleClose}>
-                        Profile
+                        Edit Profile
                     </MenuItem>
                     <Divider />
                     <MenuItem onClick={handleClose}>

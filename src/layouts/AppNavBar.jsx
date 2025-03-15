@@ -37,9 +37,11 @@ export const AppNavBar = () => {
                     <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
                         <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
 
-                            <IconButton sx={{ mr: 2 }}>
-                                <HomeIcon />
-                            </IconButton>
+                            <NavLink to="/" style={{}} >
+                                <IconButton sx={{ mr: 2 }}>
+                                    <HomeIcon />
+                                </IconButton>
+                            </NavLink>
 
                             <NavLink to="/movies" style={{}} >
                                 <Button variant="text" color="info" size="small">

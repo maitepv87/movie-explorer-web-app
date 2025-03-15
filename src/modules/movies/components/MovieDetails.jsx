@@ -32,10 +32,11 @@ export const MovieDetails = ({ movie }) => {
                     top: 0,
                     left: 0,
                     width: '100%',
-                    height: '50vh',
-                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${getImageUrl(backdrop_path)})`,
+                    height: '45vh',
+                    backgroundImage: `url(${getImageUrl(backdrop_path)})`,
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    backgroundPosition: 'right',
+                    opacity: 0.2,
                 }}
             />
 

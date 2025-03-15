@@ -18,7 +18,7 @@ export const movieSlice = createSlice({
 
         },
         setMovie: (state, action) => {
-            // console.log("STORE:", action);
+            console.log("STORE setMovie:", action);
             state.movie = action.payload
             state.error = null;
 
