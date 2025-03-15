@@ -6,6 +6,7 @@ import { store } from './store'
 import { Provider } from 'react-redux'
 import AppLayout from "./AppLayout";
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   <React.StrictMode>

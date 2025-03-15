@@ -1,123 +1,98 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Typography, Box, Paper, Card, CardMedia } from '@mui/material';
+import { Grid, Typography, Box, Card, CardMedia, CardContent, Avatar, Paper } from '@mui/material';
 import { List, Favorite, Bookmark } from '@mui/icons-material';
-import { ActionButton } from '../../../components/ActionButton';
 import { formatDate, getImageUrl } from '../../../utils';
+import { ActionButton } from '../../../components/ActionButton';
 
 export const MovieDetails = ({ movie }) => {
-
     const {
         title,
         overview,
         poster_path,
+        backdrop_path,
         genres,
         runtime,
         origin_country,
         release_date
     } = movie;
 
-    const movieGenres = genres?.length > 0 ? genres.map((genre) => genre.name).join(", ") : "Genderless"
+    const movieGenres = genres?.length > 0 ? genres.map((genre) => genre.name).join(", ") : "Unknown";
     const movieRuntime = `${Math.floor(runtime / 60)}h ${runtime % 60}m`;
     const movieOriginCountry = origin_country?.length > 0
         ? `(${origin_country.map((originCountry) => originCountry).join(", ")})`
-        : "(unknown)";
+        : "(Unknown)";
 
     return (
-        <Box sx={{ padding: 2 }}>
-            {/* Cuadrícula principal con dos filas */}
-            <Grid container spacing={1}>
-                {/* Fila 1 */}
-                <Grid container item spacing={2}>
-                    {/* Columna 1 - Poster (4 columnas) */}
-                    <Grid item xs={12} sm={4}>
-                        <Paper sx={{ padding: 2 }}>
-                            {/* Aquí va el poster de la película */}
-                            <Card sx={{ width: "100%", height: "100%" }}>
-                                <CardMedia
-                                    component="img"
-                                    image={getImageUrl(poster_path)}
-                                    alt="Movie poster"
-                                />
-                            </Card>
-                        </Paper>
+        <Box sx={{ position: 'relative', color: 'white', minHeight: '100vh' }}>
+            {/* Imagen de fondo con overlay */}
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '50vh',
+                    backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${getImageUrl(backdrop_path)})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+            />
+
+            {/* Contenido Principal */}
+            <Box sx={{ position: 'relative', zIndex: 2, padding: 4 }}>
+                <Grid container spacing={4} alignItems="center">
+                    {/* Columna del Poster */}
+                    <Grid item xs={12} sm={4} md={3}>
+                        <Card sx={{ maxWidth: 300, boxShadow: 3 }}>
+                            <CardMedia
+                                component="img"
+                                image={getImageUrl(poster_path)}
+                                alt="Movie poster"
+                            />
+                        </Card>
                     </Grid>
 
-                    {/* Columna 2 - Información de la película (8 columnas) */}
-                    <Grid item xs={12} sm={8}>
-                        <Paper sx={{ padding: 2 }}>
-                            {/* Título de la película */}
-                            <Typography variant="h3" component="h1" gutterBottom>
-                                {title}
-                                <Typography variant="h3" component="span" color="textSecondary" sx={{ marginLeft: 1 }}>
-                                    ({new Date(release_date).getFullYear()})
-                                </Typography>
+                    {/* Columna de Información */}
+                    <Grid item xs={12} sm={8} md={9}>
+                        <Typography variant="h3" component="h1" fontWeight="bold">
+                            {title}
+                            <Typography variant="h3" component="span" sx={{ marginLeft: 1 }}>
+                                ({new Date(release_date).getFullYear()})
                             </Typography>
-
-                            {/* Fecha de lanzamiento */}
-                            <Typography variant="body1" color="textSecondary">
-                                {formatDate(release_date)} {movieOriginCountry} ・ {movieGenres} ・ {movieRuntime}
-                            </Typography>
-
-
-                            {/* Botones */}
-                            <Box sx={{ marginBottom: 3, marginTop: 2, display: 'flex', gap: 2 }}>
-                                {/* Primer botón: "Add to Watchlist" */}
-                                <ActionButton
-                                    title="Add to list"
-                                    icon={<List />}
-                                    onClick={() => alert("List")}
-                                />
-
-                                {/* Segundo botón: "Heart" (Favoritos) */}
-                                <ActionButton
-                                    title="Mark as favorite"
-                                    icon={<Favorite />}
-                                    onClick={() => alert("Favorite")}
-                                />
-
-                                {/* Tercer botón: "Add to Your Watchlist" */}
-                                <ActionButton
-                                    title="Add to your watchlist"
-                                    icon={<Bookmark />}
-                                    onClick={() => alert("Add to your watchlist")}
-                                />
-
-                            </Box>
-
-                            {/* Encabezado "Overview" */}
-                            <Typography variant="h6" component="h2" sx={{ fontWeight: 'bold', marginBottom: 1 }}>
-                                Overview
-                            </Typography>
-
-                            {/* Descripción de la película */}
-                            <Typography variant="body2" >
-                                {overview}
-                            </Typography>
-
-                        </Paper>
-                    </Grid>
-                </Grid>
-
-                {/* Fila 2 (otra sección debajo) */}
-                <Grid item xs={12}>
-                    {/* Aquí puedes agregar más secciones o detalles */}
-                    <Paper sx={{ padding: 2 }}>
-                        <Typography variant="h5" component="h2" gutterBottom>
-                            Top Billed Cast
                         </Typography>
-                        {/* Agrega más información aquí si la necesitas */}
-                    </Paper>
+
+                        <Typography variant="body1">
+                            {formatDate(release_date)} {movieOriginCountry} ・ {movieGenres} ・ {movieRuntime}
+                        </Typography>
+
+                        {/* Botones de Acción */}
+                        <Box sx={{ display: 'flex', gap: 2, marginTop: 2 }}>
+                            <ActionButton label="Add to List" icon={<List />} />
+                            <ActionButton label="Favorite" icon={<Favorite />} />
+                            <ActionButton label="Watchlist" icon={<Bookmark />} />
+                        </Box>
+
+                        {/* Descripción */}
+                        <Typography variant="h5" sx={{ marginTop: 3, fontWeight: 'bold' }}>
+                            Overview
+                        </Typography>
+                        <Typography variant="body2">{overview}</Typography>
+                    </Grid>
                 </Grid>
-            </Grid>
+
+                {/* Sección de Reparto */}
+
+            </Box>
         </Box>
     );
 };
 
 MovieDetails.propTypes = {
-    movie: PropTypes.object,
-
+    movie: PropTypes.object.isRequired,
+    cast: PropTypes.array.isRequired, // Se espera que 'cast' sea un array de actores
 };
+
 
 
 

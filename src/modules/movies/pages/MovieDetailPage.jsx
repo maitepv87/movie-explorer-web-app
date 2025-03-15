@@ -5,8 +5,6 @@ import { MovieDetails } from '../components';
 export const MovieDetailPage = () => {
     const { movie } = useSelector((state) => state.movie)
 
-    console.log("Component:", movie);
-
     return (
         < MovieDetails movie={movie} />
     );

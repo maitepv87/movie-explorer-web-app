@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { NavLink } from "react-router-dom";
 import { styled, alpha } from '@mui/material/styles';
-import { Box, AppBar, Toolbar, Button, Container } from '@mui/material';
+import { Box, AppBar, Toolbar, Button, Container, IconButton } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
 import { ProfileSettingsMenu } from './ProfileSettingsMenu';
 
 
@@ -35,6 +36,11 @@ export const AppNavBar = () => {
                 <StyledToolbar variant="dense" disableGutters>
                     <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
                         <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+
+                            <IconButton sx={{ mr: 2 }}>
+                                <HomeIcon />
+                            </IconButton>
+
                             <NavLink to="/movies" style={{}} >
                                 <Button variant="text" color="info" size="small">
                                     Movies
