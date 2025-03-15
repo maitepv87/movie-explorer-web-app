@@ -1,12 +1,54 @@
-# movie-explorer-web-app" 
+# Movie Explorer Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React application for exploring movies and people in the film industry. This project uses The Movie Database (TMDB) API to fetch and display information about movies, actors, and more.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Browse popular and trending movies
+- Search for specific movies and people
+- View detailed information about movies including cast, crew, and related content
+- Explore information about actors, directors, and other film industry professionals
+- Responsive design for optimal viewing on any device
 
-## Expanding the ESLint configuration
+## Technologies
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 19
+- Redux Toolkit for state management
+- React Router for navigation
+- Material UI for component styling
+- Axios for API requests
+- Vite for fast development and building
+- Jest for testing
+
+## Prerequisites
+
+- Node.js (v18 or later recommended)
+- npm or yarn package manager
+
+## Getting Started
+
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   cd movie-explorer-web-app
+   ```
+
+2. Install dependencies:
+   ```
+   npm install
+   ```
+
+3. Start the development server:
+   ```
+   npm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## Available Scripts
+
+- `npm run dev` - Start the development server
+- `npm run build` - Build the app for production
+- `npm run preview` - Preview the production build locally
+- `npm run lint` - Run ESLint to check code quality
+- `npm run test` - Run Jest tests
