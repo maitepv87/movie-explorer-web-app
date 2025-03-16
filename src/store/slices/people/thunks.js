@@ -1,7 +1,7 @@
 import { setPeople, setPerson } from './peopleSlice';
 import { tmdbApi } from '../../../api/tmdbApi';
 
-const apiKey = 'e8752c25ec72a395c2e9f279e9b4e18f';
+const apiKey = import.meta.env.VITE_API_KEY;
 const activeObject = 'person';
 
 export const getPeople = () => {

@@ -9,7 +9,6 @@ export const PersonDetails = ({ person }) => {
         name,
         profile_path,
         biography
-
     } = person;
 
     return (

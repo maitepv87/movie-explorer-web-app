@@ -11,13 +11,13 @@ export const HomePage = () => {
     };
 
     return (
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 4, p: 4 }}>
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
             {/* Sección Superior */}
-            <Box sx={{ textAlign: "center", py: 5, bgcolor: "primary.main", color: "white", borderRadius: 2 }}>
+            <Box sx={{ textAlign: "center", py: 5 }}>
                 <Typography variant="h3" gutterBottom>Welcome to Movie Explorer</Typography>
-                <Button variant="contained" color="secondary" size="large">Explore Now</Button>
+
                 <Box sx={{ mt: 3 }}>
-                    <TextField label="Search for a movie..." variant="outlined" fullWidth sx={{ maxWidth: 500 }} />
+                    <TextField label="Search for a movie..." variant="outlined" fullWidth />
                 </Box>
             </Box>
 
@@ -36,8 +36,8 @@ export const HomePage = () => {
                     </ToggleButtonGroup>
                 </Box>
 
-                {/* Carrusel de Películas (pendiente de implementación) */}
-                <Box sx={{ bgcolor: "grey.900", height: 300, borderRadius: 2, display: "flex", alignItems: "center", justifyContent: "center", color: "white" }}>
+                {/* Carrusel de Películas */}
+                <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", }}>
                     <Typography>Carousel Component Here</Typography>
                 </Box>
             </Box>

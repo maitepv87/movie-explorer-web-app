@@ -12,7 +12,6 @@ export const peopleSlice = createSlice({
     initialState,
     reducers: {
         setPeople: (state, action) => {
-            console.log("STORE:", action.payload);
             state.people = action.payload
         },
         setPerson: (state, action) => {
