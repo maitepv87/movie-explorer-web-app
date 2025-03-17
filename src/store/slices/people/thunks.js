@@ -34,7 +34,7 @@ export const getPerson = (personId) => {
 
             const url = `/${activeObject}/${personId}?api_key=${apiKey}&language=en-US`;
             const response = await tmdbApi.get(url);
-            dispatch(setPerson(response.data))
+            dispatch(setPerson(response.data));
 
             dispatch(setLoading(false));
         } catch (error) {
@@ -44,3 +44,5 @@ export const getPerson = (personId) => {
         }
     }
 }
+
+

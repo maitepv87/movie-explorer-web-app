@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import { PersonDetails } from '../components';
 
 export const PersonDetailsPage = () => {
+
     const { person } = useSelector((state) => state.people)
 
     return (

@@ -14,13 +14,12 @@ export const movieSlice = createSlice({
     initialState,
     reducers: {
         setMovies: (state, action) => {
-            // console.log("STORE:", action.payload);
             state.movies = action.payload.results;
             state.page = action.payload.page;
             state.totalPages = action.payload.total_pages;
         },
         setMovie: (state, action) => {
-            console.log("STORE setMovie:", action);
+            // console.log("STORE setMovie:", action);
             state.movie = action.payload
         },
         setLoading: (state, action) => {
@@ -34,10 +33,18 @@ export const movieSlice = createSlice({
             state.page = 1;
             state.totalPages = 1;
         },
+
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { setMovies, setMovie, setLoading, setError, resetMoviesState } = movieSlice.actions
+export const {
+    setMovies,
+    setMovie,
+    setLoading,
+    setError,
+    resetMoviesState,
+    setTrendingMovies
+} = movieSlice.actions
 
 export default movieSlice.reducer
