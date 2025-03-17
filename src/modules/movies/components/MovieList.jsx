@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Grid, Typography, Card, CardMedia, CardContent, CardActionArea, Box, Button, Pagination } from '@mui/material';
 import { formatDate, getImageUrl } from '../../../utils';
 
-export const MovieList = ({ movies, onClick, onLoadMore }) => {
+export const MovieList = ({ movies, onClick, page, totalPages, onPaginationChange }) => {
     return (
         <Box>
             <Grid container spacing={2}>
@@ -44,10 +44,11 @@ export const MovieList = ({ movies, onClick, onLoadMore }) => {
 
             {/* Pagination */}
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-                {/* <Button variant="contained" onClick={onLoadMore}>
-                    Load More
-                </Button> */}
-                <Pagination count={11} defaultPage={6} siblingCount={0} />
+                <Pagination
+                    count={totalPages}
+                    onChange={onPaginationChange}
+                    page={page}
+                />
             </Box>
         </Box>
     );

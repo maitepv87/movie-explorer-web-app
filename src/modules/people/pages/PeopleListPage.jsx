@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { Typography, CircularProgress } from '@mui/material';
-import { getPeople, getPerson } from '../../../store/slices/people'
+import { getPeople, getPerson, resetPeopleState } from '../../../store/slices/people'
 import { PeopleList } from '../components';
 
 export const PeopleListPage = () => {
@@ -12,7 +12,11 @@ export const PeopleListPage = () => {
     const { people, loading, error, page, totalPages } = useSelector((state) => state.people)
 
     useEffect(() => {
-        dispatch(getPeople(page));
+        dispatch(getPeople(1));
+
+        return () => {
+            dispatch(resetPeopleState());
+        };
     }, []);
 
     const onPersonClick = (personId) => {
@@ -21,8 +25,8 @@ export const PeopleListPage = () => {
             .catch(err => console.error('Error fetching person:', err));
     };
 
-    const onPaginationChange = (event) => {
-        console.log(event)
+    const onPaginationChange = (event, newPage) => {
+        dispatch(getPeople(newPage));
     };
 
     if (loading) return <CircularProgress />;

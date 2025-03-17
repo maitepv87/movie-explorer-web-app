@@ -14,8 +14,6 @@ export const peopleSlice = createSlice({
     initialState,
     reducers: {
         setPeople: (state, action) => {
-            console.log("STORE setPeople:", action.payload);
-            // state.people = action.payload
             state.people = action.payload.results;
             state.page = action.payload.page;
             state.totalPages = action.payload.total_pages;
@@ -30,10 +28,15 @@ export const peopleSlice = createSlice({
         setError: (state, action) => {
             state.error = action.payload;
         },
+        resetPeopleState: (state) => {
+            state.people = [];
+            state.page = 1;
+            state.totalPages = 1;
+        },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { setPeople, setPerson, setLoading, setError } = peopleSlice.actions
+export const { setPeople, setPerson, setLoading, setError, resetPeopleState } = peopleSlice.actions
 
 export default peopleSlice.reducer

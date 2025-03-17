@@ -65,7 +65,6 @@ export const PeopleList = ({ people, onClick, totalPages, page, onPaginationChan
                     count={totalPages}
                     onChange={onPaginationChange}
                     page={page}
-                    rowsPerPage={20}
                 />
             </Box>
         </Box>
