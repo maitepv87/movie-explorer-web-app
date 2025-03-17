@@ -4,12 +4,20 @@ import { tmdbApi } from '../../../api/tmdbApi';
 const apiKey = import.meta.env.VITE_API_KEY;
 const activeObject = 'person';
 
-export const getPeople = () => {
+export const getPeople = (page) => {
     return async (dispatch, getState) => {
         try {
-            const url = `/${activeObject}/popular?api_key=${apiKey}&language=en-US&page=1`;
+            const url = `/${activeObject}/popular?api_key=${apiKey}&language=en-US&page=${page}`;
             const response = await tmdbApi.get(url);
-            dispatch(setPeople(response.data.results))
+
+            // const { people } = getState().people;
+
+            // dispatch(setPeople(response.data.results));
+            dispatch(setPeople({
+                results: response.data.results,
+                page: response.data.page,
+                total_pages: response.data.total_pages,
+            }));
         } catch (error) {
             console.error('Error fetching people:', error);
 

@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    people: [],
-    person: {},
+    people: [],  // List of people
+    person: {},  // Details of a specific person
     loading: false,
     error: null,
+    page: 1, // Current page
+    totalPages: 1, // Total available pages
 }
 
 export const peopleSlice = createSlice({
@@ -12,7 +14,11 @@ export const peopleSlice = createSlice({
     initialState,
     reducers: {
         setPeople: (state, action) => {
-            state.people = action.payload
+            console.log("STORE setPeople:", action.payload);
+            // state.people = action.payload
+            state.people = action.payload.results;
+            state.page = action.payload.page;
+            state.totalPages = action.payload.total_pages;
         },
         setPerson: (state, action) => {
             console.log("STORE:", action.payload);

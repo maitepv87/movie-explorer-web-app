@@ -9,10 +9,10 @@ export const PeopleListPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { people, loading, error } = useSelector((state) => state.people)
+    const { people, loading, error, page, totalPages } = useSelector((state) => state.people)
 
     useEffect(() => {
-        dispatch(getPeople());
+        dispatch(getPeople(page));
     }, []);
 
     const onPersonClick = (personId) => {
@@ -21,10 +21,20 @@ export const PeopleListPage = () => {
             .catch(err => console.error('Error fetching person:', err));
     };
 
+    const onPaginationChange = (event) => {
+        console.log(event)
+    };
+
     if (loading) return <CircularProgress />;
     if (error) return <Typography color="error">{error}</Typography>;
 
     return (
-        <PeopleList people={people} onClick={onPersonClick} />
+        <PeopleList
+            onClick={onPersonClick}
+            page={page}
+            people={people}
+            totalPages={totalPages}
+            onPaginationChange={onPaginationChange}
+        />
     );
 };
