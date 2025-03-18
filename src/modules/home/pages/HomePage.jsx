@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { Button, TextField, ToggleButton, ToggleButtonGroup, Typography, Box } from "@mui/material";
-import { getTrending } from '../../../store/slices/trending';
+import { useDispatch, useSelector } from "react-redux";
+import { Box, Grid, Typography, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import { getTrending } from "../../../store/slices/trending";
 
 export const HomePage = () => {
     const dispatch = useDispatch();
-    const { trendingData } = useSelector((state) => state.trending);
+    const { trendingData, page, totalPages } = useSelector((state) => state.trending);
 
     const [timeWindow, setTimeWindow] = useState("day");
+    const [currentPage, setCurrentPage] = useState(1);
 
     const handleTimeWindowChange = (event, newTimeWindow) => {
         if (newTimeWindow !== null) {
@@ -15,47 +19,67 @@ export const HomePage = () => {
         }
     };
 
+    const handleReachEnd = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage((prevPage) => prevPage + 1);
+        }
+    };
+
     useEffect(() => {
         dispatch(getTrending("all", timeWindow));
-    }, [timeWindow]);
+    }, [dispatch, timeWindow]);
 
     return (
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box sx={{ p: 2, width: "100%" }}>
             {/* Welcome */}
-            <Box sx={{ textAlign: "center", py: 5 }}>
-                <Typography variant="h3" gutterBottom>
+            <Box sx={{ textAlign: "center", py: 1 }}>
+                <Typography variant="h4" gutterBottom>
                     Welcome to Movie Explorer
                 </Typography>
-
-                <Box sx={{ mt: 3 }}>
-                    <TextField label="Search for a movie..." variant="outlined" fullWidth />
-                </Box>
             </Box>
 
-            {/* Time-Window Selection */}
-            <Box>
-                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
-                    <Typography variant="h4">Trending</Typography>
-                    <ToggleButtonGroup
-                        value={timeWindow}
-                        exclusive
-                        onChange={handleTimeWindowChange}
-                        aria-label="trending filter"
-                    >
-                        <ToggleButton value="day">Today</ToggleButton>
-                        <ToggleButton value="week">This Week</ToggleButton>
-                    </ToggleButtonGroup>
-                </Box>
+            {/* Filtro de Tiempo */}
 
-                {/* Trending */}
-                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
-                    {trendingData.map((data) => (
-                        <Box key={data.id} sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                            <Typography>{data.title || data.name}</Typography>
-                        </Box>
+            <Box
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "left",
+                    gap: 2,
+                    p: 1
+                }}
+            >
+                <Typography variant="h6">Trending</Typography>
+                <ToggleButtonGroup size="small" value={timeWindow} exclusive onChange={handleTimeWindowChange}>
+                    <ToggleButton value="day">Today</ToggleButton>
+                    <ToggleButton value="week">Week</ToggleButton>
+                </ToggleButtonGroup>
+            </Box>
+
+            {/* Swiper: All trending */}
+            <Box sx={{ mt: 0 }}>
+                <Swiper spaceBetween={2} slidesPerView={7} onReachEnd={handleReachEnd}>
+                    {trendingData.map((item) => (
+                        <SwiperSlide key={item.id}>
+                            <Grid container direction="column" alignItems="center" textAlign="center">
+                                <Grid item>
+                                    <img
+                                        src={`https://image.tmdb.org/t/p/w154${item.poster_path || item.profile_path}`}
+                                        alt={item.title || item.name}
+                                        style={{ width: "100%", borderRadius: 4 }}
+                                    />
+                                </Grid>
+                                <Grid item>
+                                    <Typography sx={{ fontSize: 12, mt: 1 }}>
+                                        {item.title || item.name}
+                                    </Typography>
+                                </Grid>
+                            </Grid>
+                        </SwiperSlide>
                     ))}
-                </Box>
+                </Swiper>
             </Box>
         </Box>
     );
 };
+

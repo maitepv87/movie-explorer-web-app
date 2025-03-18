@@ -22,7 +22,8 @@
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
     "react-router": "^6.30.0",
-    "react-router-dom": "^6.30.0"
+    "react-router-dom": "^6.30.0",
+    "swiper": "^11.2.5"
   },
   "devDependencies": {
     "@babel/core": "^7.26.9",
