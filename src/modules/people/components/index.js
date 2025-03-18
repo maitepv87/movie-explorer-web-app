@@ -1,2 +1,2 @@
-export * from './PeopleList';
-export * from './PersonDetails';
+export * from "./PeopleList";
+export * from "./PersonDetails";

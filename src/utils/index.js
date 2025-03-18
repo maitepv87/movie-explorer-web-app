@@ -1,2 +1,2 @@
-export * from './formatDate';
-export * from './getImageUrl';
+export * from "./formatDate";
+export * from "./getImageUrl";

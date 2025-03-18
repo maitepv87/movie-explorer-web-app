@@ -1,7 +1,7 @@
-import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppTheme from './theme/AppTheme';
-import { AppNavBar, AppContent } from './layouts'
+import * as React from "react";
+import CssBaseline from "@mui/material/CssBaseline";
+import AppTheme from "./theme/AppTheme";
+import { AppNavBar, AppContent } from "./layouts";
 
 const AppLayout = (props) => {
   return (
@@ -13,6 +13,6 @@ const AppLayout = (props) => {
       </div>
     </AppTheme>
   );
-}
+};
 
-export default AppLayout; 
+export default AppLayout;

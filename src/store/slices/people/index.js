@@ -1,2 +1,2 @@
-export * from './peopleSlice';
-export * from './thunks';
+export * from "./peopleSlice";
+export * from "./thunks";

@@ -1,2 +1,2 @@
-export * from './PeopleListPage';
-export * from './PersonDetailsPage';
+export * from "./PeopleListPage";
+export * from "./PersonDetailsPage";

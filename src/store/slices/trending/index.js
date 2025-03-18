@@ -1,2 +1,2 @@
-export * from './trendingSlice';
-export * from './thunks';
+export * from "./trendingSlice";
+export * from "./thunks";

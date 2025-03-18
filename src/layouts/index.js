@@ -1,3 +1,3 @@
-export * from './AppContent';
-export * from './AppNavBar';
-export * from './ProfileSettingsMenu';
+export * from "./AppContent";
+export * from "./AppNavBar";
+export * from "./ProfileSettingsMenu";
