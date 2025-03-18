@@ -14,7 +14,7 @@ export const trendingSlice = createSlice({
   initialState,
   reducers: {
     setTrending: (state, action) => {
-      console.log("STORE setTrending:", action.payload);
+      // console.log("STORE setTrending:", action.payload);
       state.trendingCategory = action.payload.category;
       state.trendingData = action.payload.results;
       state.page = action.payload.page;

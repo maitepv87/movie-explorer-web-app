@@ -14,13 +14,13 @@ export const peopleSlice = createSlice({
   initialState,
   reducers: {
     setPeople: (state, action) => {
-      console.log("STORE setPeople:", action.payload.results);
+      // console.log("STORE setPeople:", action.payload.results);
       state.people = action.payload.results;
       state.page = action.payload.page;
       state.totalPages = action.payload.total_pages;
     },
     setPerson: (state, action) => {
-      console.log("STORE setPerson:", action.payload);
+      // console.log("STORE setPerson:", action.payload);
       state.person = action.payload;
     },
     setLoading: (state, action) => {
