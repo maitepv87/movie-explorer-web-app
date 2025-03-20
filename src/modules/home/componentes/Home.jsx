@@ -1,15 +1,12 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { MediaCard, SwiperContainer, ToggleFilter } from "../../../components";
+import { HeroSection } from "../../../layouts";
 
 export const Home = ({ timeWindow, onChange, trendingData, onReachEnd }) => {
   return (
     <Box sx={{ p: 2, width: "100%" }}>
-      {/* Welcome */}
-      <Box sx={{ textAlign: "center", py: 1 }}>
-        <Typography variant="h4" gutterBottom>
-          Welcome to Movie Explorer.
-        </Typography>
-      </Box>
+      {/* Hero */}
+      <HeroSection sx={{ mb: 6 }} />
 
       {/* Time Filter */}
       <ToggleFilter

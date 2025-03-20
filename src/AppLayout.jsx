@@ -8,9 +8,7 @@ const AppLayout = (props) => {
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <AppNavBar />
-      <div>
-        <AppContent />
-      </div>
+      <AppContent />
     </AppTheme>
   );
 };

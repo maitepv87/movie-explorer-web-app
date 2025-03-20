@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { styled, alpha } from "@mui/material/styles";
 import {
@@ -6,11 +6,14 @@ import {
   AppBar,
   Toolbar,
   Button,
-  Container,
   IconButton,
+  Container,
+  Divider,
+  MenuItem,
+  Drawer,
 } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import { ProfileSettingsMenu } from "./ProfileSettingsMenu";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -19,6 +22,8 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   flexShrink: 0,
   borderRadius: `calc(${theme.shape.borderRadius}px + 8px)`,
   backdropFilter: "blur(24px)",
+  border: "1px solid",
+  borderColor: (theme.vars || theme).palette.divider,
   backgroundColor: theme.vars
     ? `rgba(${theme.vars.palette.background.defaultChannel} / 0.4)`
     : alpha(theme.palette.background.default, 0.4),
@@ -27,6 +32,12 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 }));
 
 export const AppNavBar = () => {
+  const [open, setOpen] = useState(false);
+
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
+
   return (
     <AppBar
       position="fixed"
@@ -43,13 +54,19 @@ export const AppNavBar = () => {
           <Box
             sx={{ flexGrow: 1, display: "flex", alignItems: "center", px: 0 }}
           >
+            <NavLink to="/" style={{}}>
+              <Button
+                variant="text"
+                color="info"
+                size="small"
+                sx={{
+                  fontWeight: "bold",
+                }}
+              >
+                Home
+              </Button>
+            </NavLink>
             <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              <NavLink to="/" style={{}}>
-                <IconButton sx={{ mr: 2 }}>
-                  <HomeIcon />
-                </IconButton>
-              </NavLink>
-
               <NavLink to="/movies" style={{}}>
                 <Button variant="text" color="info" size="small">
                   Movies
@@ -62,7 +79,65 @@ export const AppNavBar = () => {
               </NavLink>
             </Box>
           </Box>
-          <ProfileSettingsMenu />
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              gap: 1,
+              alignItems: "center",
+            }}
+          >
+            <Button color="primary" variant="text" size="small">
+              Sign in
+            </Button>
+            <Button color="primary" variant="contained" size="small">
+              Sign up
+            </Button>
+          </Box>
+          <Box sx={{ display: { xs: "flex", md: "none" }, gap: 1 }}>
+            <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
+              <MenuIcon />
+            </IconButton>
+            <Drawer
+              anchor="top"
+              open={open}
+              onClose={toggleDrawer(false)}
+              PaperProps={{
+                sx: {
+                  top: "var(--template-frame-height, 0px)",
+                },
+              }}
+            >
+              <Box sx={{ p: 2, backgroundColor: "background.default" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                  }}
+                >
+                  <IconButton onClick={toggleDrawer(false)}>
+                    <CloseRoundedIcon />
+                  </IconButton>
+                </Box>
+                <NavLink to="/movies" style={{ textDecoration: "none" }}>
+                  <MenuItem>Movies</MenuItem>
+                </NavLink>
+                <NavLink to="/people" style={{ textDecoration: "none" }}>
+                  <MenuItem>People</MenuItem>
+                </NavLink>
+                <Divider sx={{ my: 3 }} />
+                <MenuItem>
+                  <Button color="primary" variant="contained" fullWidth>
+                    Sign up
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Button color="primary" variant="outlined" fullWidth>
+                    Sign in
+                  </Button>
+                </MenuItem>
+              </Box>
+            </Drawer>
+          </Box>
         </StyledToolbar>
       </Container>
     </AppBar>
