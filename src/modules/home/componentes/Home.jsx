@@ -21,12 +21,7 @@ export const Home = ({ timeWindow, onChange, trendingData, onReachEnd }) => {
 
       {/* Swiper: All trending */}
       <Box sx={{ mt: 0 }}>
-        <SwiperContainer
-          data={trendingData}
-          slidesPerView={6}
-          spaceBetween={2}
-          onReachEnd={onReachEnd}
-        >
+        <SwiperContainer data={trendingData} onReachEnd={onReachEnd}>
           {(item) => <MediaCard item={item} />}
         </SwiperContainer>
       </Box>

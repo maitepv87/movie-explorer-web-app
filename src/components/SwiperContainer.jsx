@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
 
 export const SwiperContainer = ({
   data,
@@ -14,15 +14,30 @@ export const SwiperContainer = ({
 }) => {
   return (
     <Swiper
-      spaceBetween={spaceBetween || 2}
-      slidesPerView={slidesPerView || 6}
+      slidesPerView={slidesPerView || 1}
+      spaceBetween={spaceBetween || 5}
+      pagination={{
+        clickable: true,
+      }}
+      breakpoints={{
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
+        768: {
+          slidesPerView: 4,
+          spaceBetween: 16,
+        },
+        1024: {
+          slidesPerView: 6,
+          spaceBetween: 12,
+        },
+      }}
       onReachEnd={onReachEnd}
       modules={[Pagination]}
-      pagination={{ clickable: true }}
-      style={{ paddingBottom: "30px" }}
     >
       {data.map((item) => (
-        <SwiperSlide key={item.id}>{children(item)} </SwiperSlide>
+        <SwiperSlide key={item.id}>{children(item)}</SwiperSlide>
       ))}
     </Swiper>
   );
