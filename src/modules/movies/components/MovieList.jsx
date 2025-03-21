@@ -6,8 +6,8 @@ import { MediaCard } from "../../../components/MediaCard";
 export const MovieList = ({
   movies,
   onClick,
-  page,
-  totalPages,
+  page = 1,
+  totalPages = 1,
   onPaginationChange,
 }) => {
   return (
@@ -33,6 +33,9 @@ export const MovieList = ({
 };
 
 MovieList.propTypes = {
-  movies: PropTypes.array.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
   onClick: PropTypes.func.isRequired,
+  page: PropTypes.number,
+  totalPages: PropTypes.number,
+  onPaginationChange: PropTypes.func.isRequired,
 };
