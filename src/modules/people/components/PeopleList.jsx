@@ -1,22 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  Grid,
-  Typography,
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
-  Box,
-  Pagination,
-} from "@mui/material";
-import { getImageUrl } from "../../../utils";
+import { Grid, Typography, Box, Pagination } from "@mui/material";
+import { PersonCard } from "../../../components";
 
 export const PeopleList = ({
   people,
   onClick,
-  totalPages,
-  page,
+  page = 1,
+  totalPages = 1,
   onPaginationChange,
 }) => {
   return (
@@ -30,62 +21,23 @@ export const PeopleList = ({
 
           return (
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2.4} key={person.id}>
-              <Card
-                sx={{
-                  maxWidth: 345,
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-                onClick={() => onClick(person.id)}
-              >
-                <CardActionArea sx={{ flexGrow: 1 }}>
-                  <CardMedia
-                    component="img"
-                    image={getImageUrl(person.profile_path)}
-                    alt={`Person ${person.name}`}
-                  />
-                  <CardContent
-                    sx={{
-                      flexGrow: 1,
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Box sx={{ flexGrow: 1 }}>
-                      <Typography
-                        variant="subtitle2"
-                        color="text.primary"
-                        sx={{
-                          display: "-webkit-box",
-                          WebkitBoxOrient: "vertical",
-                          WebkitLineClamp: 2,
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                        }}
-                      >
-                        {person.name}
-                      </Typography>
-
-                      {/* Known For */}
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{
-                          display: "-webkit-box",
-                          WebkitBoxOrient: "vertical",
-                          WebkitLineClamp: 3,
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                          mt: 0.5,
-                        }}
-                      >
-                        {knownForMovies}
-                      </Typography>
-                    </Box>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+              <PersonCard person={person} onClick={() => onClick(person.id)}>
+                {/* Known For */}
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{
+                    display: "-webkit-box",
+                    WebkitBoxOrient: "vertical",
+                    WebkitLineClamp: 3,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    mt: 0.5,
+                  }}
+                >
+                  {knownForMovies}
+                </Typography>
+              </PersonCard>
             </Grid>
           );
         })}
@@ -104,6 +56,9 @@ export const PeopleList = ({
 };
 
 PeopleList.propTypes = {
-  people: PropTypes.array.isRequired,
+  people: PropTypes.arrayOf(PropTypes.object).isRequired,
   onClick: PropTypes.func.isRequired,
+  page: PropTypes.number,
+  totalPages: PropTypes.number,
+  onPaginationChange: PropTypes.func.isRequired,
 };

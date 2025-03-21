@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Box, Pagination } from "@mui/material";
-import { MediaCard } from "../../../components/MediaCard";
+import { MediaCard } from "../../../components";
 
 export const MovieList = ({
   movies,
