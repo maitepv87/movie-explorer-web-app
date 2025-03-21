@@ -7,29 +7,28 @@ import { ActionButton } from "../../../components/ActionButton";
 
 export const MovieDetails = ({ movie }) => {
   const {
-    title,
-    overview,
+    title = "Unknown Title",
+    overview = "No overview available.",
     poster_path,
     backdrop_path,
-    genres,
-    runtime,
-    origin_country,
+    genres = [],
+    runtime = 0,
+    origin_country = [],
     release_date,
-  } = movie;
+  } = movie || {};
 
-  const movieGenres =
-    genres?.length > 0
-      ? genres.map((genre) => genre.name).join(", ")
+  const formatList = (list) =>
+    list.length > 0
+      ? list.map((item) => item.name || item).join(", ")
       : "Unknown";
+
+  const movieGenres = formatList(genres);
+  const movieOriginCountry = `(${formatList(origin_country)})`;
   const movieRuntime = `${Math.floor(runtime / 60)}h ${runtime % 60}m`;
-  const movieOriginCountry =
-    origin_country?.length > 0
-      ? `(${origin_country.map((originCountry) => originCountry).join(", ")})`
-      : "(Unknown)";
 
   return (
-    <Box sx={{ position: "relative", color: "white", minHeight: "100vh" }}>
-      {/* Imagen de fondo con overlay */}
+    <Box sx={{ position: "relative", color: "inherit", minHeight: "100vh" }}>
+      {/* Backdrop */}
       <Box
         sx={{
           position: "absolute",
@@ -40,27 +39,30 @@ export const MovieDetails = ({ movie }) => {
           backgroundImage: `url(${getImageUrl(backdrop_path)})`,
           backgroundSize: "cover",
           backgroundPosition: "right",
-          opacity: 0.2,
+          opacity: 0.3,
         }}
       />
 
-      {/* Contenido Principal */}
       <Box sx={{ position: "relative", zIndex: 2, padding: 4 }}>
         <Grid container spacing={4} alignItems="center">
-          {/* Columna del Poster */}
+          {/* Poster */}
           <Grid item xs={12} sm={4} md={3}>
             <Card sx={{ maxWidth: 300, boxShadow: 3 }}>
               <CardMedia
                 component="img"
                 image={getImageUrl(poster_path)}
-                alt="Movie poster"
+                alt={`${title} poster`}
               />
             </Card>
           </Grid>
 
-          {/* Columna de Información */}
+          {/* Information */}
           <Grid item xs={12} sm={8} md={9}>
-            <Typography variant="h3" component="h1" fontWeight="bold">
+            <Typography
+              variant="h3"
+              component="h1"
+              sx={{ fontWeight: "bold", color: "text.primary" }}
+            >
               {title}
               <Typography variant="h3" component="span" sx={{ marginLeft: 1 }}>
                 ({new Date(release_date).getFullYear()})
@@ -72,14 +74,26 @@ export const MovieDetails = ({ movie }) => {
               ・ {movieRuntime}
             </Typography>
 
-            {/* Botones de Acción */}
+            {/* Buttons */}
             <Box sx={{ display: "flex", gap: 2, marginTop: 2 }}>
-              <ActionButton label="Add to List" icon={<List />} />
-              <ActionButton label="Favorite" icon={<Favorite />} />
-              <ActionButton label="Watchlist" icon={<Bookmark />} />
+              <ActionButton
+                title="Add to your List"
+                label="Add to List"
+                icon={<List />}
+              />
+              <ActionButton
+                title="Add to Favorite"
+                label="Favorite"
+                icon={<Favorite />}
+              />
+              <ActionButton
+                title="Add to Watchlist"
+                label="Watchlist"
+                icon={<Bookmark />}
+              />
             </Box>
 
-            {/* Descripción */}
+            {/* Overview */}
             <Typography variant="h5" sx={{ marginTop: 3, fontWeight: "bold" }}>
               Overview
             </Typography>
@@ -93,7 +107,10 @@ export const MovieDetails = ({ movie }) => {
   );
 };
 
-MovieDetails.propTypes = {
-  movie: PropTypes.object.isRequired,
-  cast: PropTypes.array.isRequired, // Se espera que 'cast' sea un array de actores
+ActionButton.propTypes = {
+  title: PropTypes.string,
+  label: PropTypes.string,
+  icon: PropTypes.node,
+  onClick: PropTypes.func,
+  variant: PropTypes.string,
 };
