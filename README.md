@@ -33,17 +33,26 @@ A modern React application for exploring movies and people in the film industry.
    cd movie-explorer-web-app
    ```
 
-2. Install dependencies:
+2. Copy the **.env.example** file to **.env** and update the API key:
+   ```
+   cp .env.example .env
+   ```
+   Open **.env** in your favorite editor and replace the placeholder with your API key, for example:
+   ```
+   VITE_API_KEY=your_api_key_here
+   ```
+   
+3. Install dependencies:
    ```
    npm install
    ```
 
-3. Start the development server:
+4. Start the development server:
    ```
    npm run dev
    ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+5. Open your browser and navigate to `http://localhost:5173`
 
 ## Available Scripts
 
