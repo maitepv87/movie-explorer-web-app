@@ -24,7 +24,9 @@ export const PersonCard = ({ person, onClick, children }) => {
       <CardActionArea sx={{ flexGrow: 1 }}>
         <CardMedia
           component="img"
-          image={getImageUrl(person.profile_path) || "/placeholder.jpg"}
+          image={
+            getImageUrl(person.profile_path) || "/images/default-profile.jpg"
+          }
           alt={`Person ${person.name}`}
         />
         <CardContent

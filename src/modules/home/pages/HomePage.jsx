@@ -10,16 +10,23 @@ export const HomePage = () => {
   const [timeWindow, setTimeWindow] = useState("day");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const handleTimeWindowChange = (event, newTimeWindow) => {
+  const onTimeWindowChange = (event, newTimeWindow) => {
     if (newTimeWindow !== null) {
       setTimeWindow(newTimeWindow);
     }
   };
 
-  const handleReachEnd = () => {
+  const onReachEnd = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
+  };
+
+  const onMediaCardClick = (mediaCardId) => {
+    alert(mediaCardId);
+    // dispatch(getMovie(movieId))
+    //   .then(() => navigate(`/movies/${movieId}`))
+    //   .catch((err) => console.error("Error fetching movie:", err));
   };
 
   useEffect(() => {
@@ -29,9 +36,10 @@ export const HomePage = () => {
   return (
     <Home
       timeWindow={timeWindow}
-      onChange={handleTimeWindowChange}
+      onChange={onTimeWindowChange}
       trendingData={trendingData}
-      onReachEnd={handleReachEnd}
+      onReachEnd={onReachEnd}
+      onClick={onMediaCardClick}
     />
   );
 };

@@ -61,6 +61,14 @@ export const MediaCard = ({ item, onClick }) => {
 };
 
 MediaCard.propTypes = {
-  item: PropTypes.object.isRequired,
-  onClick: PropTypes.func,
+  item: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string,
+    name: PropTypes.string,
+    release_date: PropTypes.string,
+    first_air_date: PropTypes.string,
+    date: PropTypes.string,
+    poster_path: PropTypes.string,
+  }).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
