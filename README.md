@@ -27,7 +27,6 @@ A modern React application for exploring movies and people in the film industry.
 
 ## Getting Started
 
-```markdown
 1. Clone the repository:
    ```
    git clone <repository-url>
