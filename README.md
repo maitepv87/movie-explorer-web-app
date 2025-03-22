@@ -41,7 +41,7 @@ A modern React application for exploring movies and people in the film industry.
    ```
    VITE_API_KEY=your_api_key_here
    ```
-
+   
 3. Install dependencies:
    ```
    npm install
@@ -51,7 +51,6 @@ A modern React application for exploring movies and people in the film industry.
    ```
    npm run dev
    ```
-```
 
 5. Open your browser and navigate to `http://localhost:5173`
 
