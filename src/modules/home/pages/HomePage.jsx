@@ -1,10 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { getTrending } from "../../../store/slices/trending";
-import { getMedia } from "../../../store/slices/media";
+import { getMovie } from "../../../store/slices/movie";
 import { Home } from "../componentes";
 
 export const HomePage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { trendingData, totalPages } = useSelector((state) => state.trending);
 
@@ -26,14 +28,15 @@ export const HomePage = () => {
   const onMediaCardClick = (mediaCardItem) => {
     const { id, media_type } = mediaCardItem;
     console.log("Contenido de item:", mediaCardItem);
-    dispatch(getMedia(id, media_type));
-    // dispatch(getMovie(movieId))
-    //   .then(() => navigate(`/movies/${movieId}`))
-    //   .catch((err) => console.error("Error fetching movie:", err));
+
+    dispatch(getMovie(id))
+      .then(() => navigate(`/movies/${id}`))
+      .catch((err) => console.error(`Error fetching ${media_type}:`, err));
   };
 
   useEffect(() => {
-    dispatch(getTrending("all", timeWindow));
+    // dispatch(getTrending("all", timeWindow));
+    dispatch(getTrending("movie", timeWindow));
   }, [dispatch, timeWindow]);
 
   return (
