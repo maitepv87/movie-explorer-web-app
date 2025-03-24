@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { getTrending } from "../../../store/slices/trending";
+import { getMedia } from "../../../store/slices/media";
 import { Home } from "../componentes";
 
 export const HomePage = () => {
@@ -22,8 +23,10 @@ export const HomePage = () => {
     }
   };
 
-  const onMediaCardClick = (mediaCardId) => {
-    alert(mediaCardId);
+  const onMediaCardClick = (mediaCardItem) => {
+    const { id, media_type } = mediaCardItem;
+    console.log("Contenido de item:", mediaCardItem);
+    dispatch(getMedia(id, media_type));
     // dispatch(getMovie(movieId))
     //   .then(() => navigate(`/movies/${movieId}`))
     //   .catch((err) => console.error("Error fetching movie:", err));
